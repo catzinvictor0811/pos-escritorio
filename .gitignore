@@ -1,8 +1,33 @@
+# Python
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
+
+# Entornos virtuales
 venv/
 .env/
+
+# VS Code
 .vscode/
+
+# Base de datos
+*.db
 *.sqlite3
+
+# Archivos generados
+dist/
+build/
+output/
+
+# Ejecutables
+*.exe
+
+# PDFs y tickets
+*.pdf
+
+# PyInstaller
+*.spec
+
+# Logs
+*.log
