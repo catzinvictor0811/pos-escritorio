@@ -44,3 +44,25 @@ class Caja:
         """, (caja_id, tipo, monto, descripcion))
         conn.commit()
         conn.close()
+
+    @staticmethod
+    def historial():
+        conn = get_connection()
+        cursor = conn.cursor()
+
+        cursor.execute("""
+            SELECT 
+                id,
+                fecha,
+                apertura,
+                cierre,
+                (cierre - apertura) as diferencia
+            FROM caja
+            WHERE estado = 'CERRADA'
+            ORDER BY id DESC
+        """)
+
+        datos = cursor.fetchall()
+        conn.close()
+        return datos
+

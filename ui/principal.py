@@ -9,6 +9,7 @@ from ui.ventas import Ventas
 from ui.corte_caja import CorteCaja
 from ui.alta_producto import AltaProducto
 from ui.editar_producto import EditarProducto
+from ui.historial_cortes import HistorialCortes
 
 
 class VentanaPrincipal(QWidget):
@@ -16,7 +17,7 @@ class VentanaPrincipal(QWidget):
         super().__init__()
         self.setWindowTitle("POS - Principal")
 
-        # 🔹 Solo hacemos la ventana más grande
+        # 🔹 Ventana grande
         self.setFixedSize(900, 650)
 
         main = QVBoxLayout()
@@ -77,6 +78,16 @@ class VentanaPrincipal(QWidget):
 
         main.addWidget(
             self.boton_pos(
+                "Historial de Cortes",
+                "assets/historial.png",  # 🔹 agrega esta imagen
+                "#d81b60",
+                "#f06292",
+                self.abrir_historial
+            )
+        )
+
+        main.addWidget(
+            self.boton_pos(
                 "Alta de Producto",
                 "assets/alta.png",
                 "#fb8c00",
@@ -101,7 +112,7 @@ class VentanaPrincipal(QWidget):
     # ================= BOTÓN TIPO TARJETA =================
     def boton_pos(self, texto, icono, c1, c2, accion):
         btn = QPushButton()
-        btn.setFixedHeight(70)  # 🔹 tamaño normal
+        btn.setFixedHeight(70)
         btn.clicked.connect(accion)
 
         btn.setStyleSheet(f"""
@@ -165,6 +176,10 @@ class VentanaPrincipal(QWidget):
     def abrir_corte(self):
         self.c = CorteCaja()
         self.c.show()
+
+    def abrir_historial(self):
+        self.h = HistorialCortes()
+        self.h.show()
 
     def abrir_alta_producto(self):
         self.ap = AltaProducto()
